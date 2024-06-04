@@ -1,0 +1,107 @@
+<html>
+
+
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    th {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0px;
+        z-index: 2;
+        background: white;
+        border-bottom: double;
+
+        font-weight: lighter;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
+    }
+
+    th[scope="row"] {
+        position: sticky;
+        position: -webkit-sticky;
+        left: 0px;
+        z-index: 2;
+    }
+    
+button{
+    background-color: rgb(from color r g b);
+    border:none;
+    font-size: x-large;
+}
+</style>
+<body>
+<div id="users" clasxs="container">
+    <h3>Favorites</h3>
+    <table class="table table-hover table-borderless fixed_header ">
+        <thead class="table-light">
+            <tr>
+                <th class="sort" data-sort="name">Name</th>
+                <th class="sort" data-sort="age">Phone</th>
+                <th class="sort" data-sort="city">Email</th>
+                <th colspan="2">
+
+                </th>
+            </tr>
+        </thead>
+        <tbody class="list">
+           <!-- <tr onclick="param(this)">
+                <td class="contact_id" style="display:none;"></td>
+                <td class="fullname"></td>
+                <td class="phone"></td>
+                <td class="email"></td>
+                <td class="edit">
+                   <button type="button" class="bi bi-pencil-square"> </button>
+                   <button type="button" class="bi bi-trash"></button>
+                </td>
+            </tr> -->
+        </tbody>
+    </table>
+    <!-- <table class="table table-striped table-hover">
+        <td class="name">
+            <input type="hidden" id="id-field" />
+            <input type="text" id="name-field" placeholder="Name" />
+        </td>
+        <td class="age">
+            <input type="text" id="age-field" placeholder="Age" />
+        </td>
+        <td class="city">
+            <input type="text" id="city-field" placeholder="City" />
+        </td>
+        <td class="add">
+            <button id="add-btn">Add</button>
+            <button id="edit-btn">Edit</button>
+        </td>
+    </table>
+</div> -->
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <!-- Popper.JS -->
+   
+   
+    <script src="list_min.js"></script>
+    <script src="script.js">
+    </script>
+    <script type=" text/javascript">
+            list("fav")
+                $(document).ready(function () {
+                    $('#sidebarCollapse').on('click', function () {
+                        $('#sidebar').toggleClass('active');
+                    });
+                });
+        </script>
+</body>
+</html>

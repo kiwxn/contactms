@@ -1,13 +1,31 @@
-<!DOCTYPE html>
-<html>
 <?php
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    // header('Location: login.php');
-    // exit;
+    header('Location: login.php');
+    exit;
 }
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="list_min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous
+        "></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+</head>
+
 
 <head>
     <meta charset="utf-8">
@@ -15,32 +33,23 @@ if (!isset($_SESSION['user_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Contact Management System</title>
-
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
 </head>
 
-<body>
+
+<body style="background:#f8f9fa;">
     <div classss="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light " styxle="padding ">
             <div class="container-fluid">
 
                 <button type="button" id="sidebarCollapse" class="btn btn-lg" style="background:#f8f9fa;font-size:15px;">
-                    <i class="fas fa-align-left"></i>
+                    <i class="bi bi-list"></i>
                     <span style="background:#f8f9fa;font-size:20px;">Contact Management System</span>
                 </button>
 
                 <form>
-                    <input type="text" name="search" placeholder="Search..">
+                    <input type="search" class="fuzzy-search" name="search" id="search-field" placeholder=" Search..">
                 </form>
+
 
 
 
@@ -77,45 +86,32 @@ if (!isset($_SESSION['user_id'])) {
     <div class="wrapper" style="background:#f7fafc;">
         <!-- Sidebar  -->
         <nav id="sidebar" style="background:#f8f9fa;font-size:15px;">
-            <div class="sidebar-header" style="border: 1px solid #f8f9fa;border-radius: 20px;margin-right:100px;">
-                <a href="#" style="font-weight: lighter;font-size:14px;">Create</a>
-            </div>
+
             </button>
 
             <ul class="list-unstyled components">
-                <!-- <p>Dummy Heading</p> -->
-                <!-- <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li> -->
-                <li class="active">
-                    <a href="#" style="border: 9px solid #f8f9fa;border-radius: 20px;font-weight: lighter;font-size:12px;">Contacts</a>
-                </li>
 
                 <li>
-                    <a href="#" style="border: 9px solid #f8f9fa;border-radius: 20px;font-weight: lighter;font-size:12px;">Favorites</a>
+                    <a onclick="$('.responsive-iframe').attr('src','addContact.html');" style="font-weight: lighter;font-size:15px;"><i class="bi bi-plus-lg h5"></i> Create</a>
                 </li>
-                <li>
+                <li class="active" data-toggle="list">
+                    <a onclick="$('.responsive-iframe').attr('src','contacts.html');" href="#" style="border: 9px solid #f8f9fa;border-radius: 20px;font-weight: lighter;font-size:12px;"><i class="bi bi-file-person-fill h5"></i> Contacts</a>
+                </li>
+
+                <li data-toggle="list">
+                    <a href="#" onclick="$('.responsive-iframe').attr('src','fav.html');" style="border: 9px solid #f8f9fa;border-radius: 20px;font-weight: lighter;font-size:12px;"><i class="bi bi-star-fill h5"></i> Favorites</a>
+                </li>
+                <!-- <li>
                     <a href="#" style="border: 9px solid #f8f9fa;border-radius: 20px;font-weight: lighter;font-size:12px;">Label</a>
-                </li>
+                </li> -->
             </ul>
 
             <ul class="list-unstyled CTAs">
+                <!-- <li>
+                    <a href="#" class="download bi bi-person h5" style="text-align:left"></a>
+                </li> -->
                 <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Logout</a>
+                    <a href="logout.php" class="article"><i class="bi bi-box-arrow-left"></i> Kitbok shylla</a>
                 </li>
             </ul>
         </nav>
@@ -125,20 +121,51 @@ if (!isset($_SESSION['user_id'])) {
             <iframe class="responsive-iframe" src="contacts.html"></iframe>
         </div>
 
+        <button id="pop" style="display:none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"></button>
+        <button id="pop3" style="display:none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3"></button>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-sm modal-dialog-centered" style="align-items: flex-end;">
+                <div class="modal-content" style="border: 3px solid #303030;border-radius: 6px;background:#303030;color:white">
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Contact has been deleted from this account
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="pop2" style="display:none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2"></button>
+
+        <div class="modal" id="myModal2">
+            <div class="modal-dialog modal-sm modal-dialog-centered" style="align-items: flex-end;">
+                <div class="modal-content" style="border: 3px solid #303030;border-radius: 6px;background:#303030;color:white">
+                    <div class="modal-body">
+                        Contact details updated
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="myModal3">
+            <div class="modal-dialog modal-sm modal-dialog-centered" style="align-items: flex-end;">
+                <div class="modal-content" style="border: 3px solid #303030;border-radius: 6px;background:#303030;color:white">
+                    <div class="modal-body">
+                        Add to favorites
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
-    <script src="list_min.js"></script>
 
-    <script src="script.js"></script>
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous
-        "></script>
+
     <script type=" text/javascript">
+        $(".list-unstyled li").on("click", function() {
+            $(".list-unstyled li").removeClass("active");
+            $(this).addClass("active");
+        });
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
